@@ -1,0 +1,38 @@
+{
+  "name": "equivalent_exchange",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "prettier": "prettier src/*.{ts,tsx} && prettier src/**/*.{ts,tsx}",
+    "prettier:fix": "prettier -w src/*.{ts,tsx} && prettier -w src/**/*.{ts,tsx}",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
+    "format": "yarn prettier:fix && yarn lint:fix",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.37",
+    "@types/react-dom": "^18.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/parser": "^5.60.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "^35.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "prettier": "^2.8.8",
+    "typescript": "*",
+    "vite": "^4.3.9"
+  }
+}
