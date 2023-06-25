@@ -1,4 +1,8 @@
 {
   "editor.tabSize": 2,
-  "files.trimTrailingWhitespace": true
+  "files.trimTrailingWhitespace": true,
+  "path-autocomplete.pathMappings": {
+    "@": "${folder}/src",
+    "~": "${folder}/public"
+  }
 }
