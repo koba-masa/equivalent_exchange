@@ -6,6 +6,7 @@ import '@/pages/Login/Login.scss'
 const Login: React.FunctionComponent = () => {
   const [loginId, setLoginId] = useState('')
   const [password, setPassword] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const navigate = useNavigate()
 
@@ -25,7 +26,7 @@ const Login: React.FunctionComponent = () => {
 
       navigate('/')
     } catch (error) {
-      console.log('login is failed.')
+      setErrorMessage('ログインIDまたはパスワードが間違っています')
     }
   }
 
@@ -61,6 +62,7 @@ const Login: React.FunctionComponent = () => {
           ログイン
         </button>
       </div>
+      <div className="error_message">{errorMessage}</div>
     </div>
   )
 }
