@@ -1,6 +1,7 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { login, logined } from '@/components/Authentication'
 import '@/pages/Login/Login.scss'
 
 const Login: React.FunctionComponent = () => {
@@ -10,7 +11,13 @@ const Login: React.FunctionComponent = () => {
 
   const navigate = useNavigate()
 
-  const login = async (): Promise<void> => {
+  useEffect(() => {
+    if (logined()) {
+      navigate('/')
+    }
+  }, [])
+
+  const handleLogin = async (): Promise<void> => {
     const data = {
       login_id: loginId,
       password
@@ -24,6 +31,8 @@ const Login: React.FunctionComponent = () => {
         headers
       })
 
+      // TODO: 本来はサーバーからトークンを取得する
+      login('sample')
       navigate('/')
     } catch (error) {
       setErrorMessage('ログインIDまたはパスワードが間違っています')
@@ -58,7 +67,7 @@ const Login: React.FunctionComponent = () => {
       </div>
       <div className="button">
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-        <button type="submit" onClick={login}>
+        <button type="submit" onClick={handleLogin}>
           ログイン
         </button>
       </div>
