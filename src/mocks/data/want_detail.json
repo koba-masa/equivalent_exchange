@@ -1,0 +1,25 @@
+{
+  "detail": {
+    "id": "1",
+    "category": "カテゴリ1",
+    "goods": "商品1",
+    "character": "キャラクター1",
+    "status": "候補あり",
+    "options": [
+      {
+        "stockId": "1",
+        "category": "カテゴリ1",
+        "goods": "商品1",
+        "character": "キャラクター2",
+        "remark": "備考1"
+      },
+      {
+        "stockId": "2",
+        "category": "カテゴリ1",
+        "goods": "商品1",
+        "character": "キャラクター3",
+        "remark": "備考2"
+      }
+    ]
+  }
+}
