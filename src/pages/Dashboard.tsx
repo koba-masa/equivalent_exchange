@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { logined } from '@/components/Authentication'
+import WantList from '@/components/Wants/WantList'
 
 const Dashboard: React.FunctionComponent = () => {
   const navigate = useNavigate()
@@ -11,7 +12,13 @@ const Dashboard: React.FunctionComponent = () => {
     }
   }, [])
 
-  return <div>ダッシュボード</div>
+  return (
+    <>
+      <div>
+        <WantList />
+      </div>
+    </>
+  )
 }
 
 export default Dashboard
