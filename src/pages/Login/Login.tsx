@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { login, logined } from '@/components/Authentication'
-import { post } from '@/apis/base'
+import { post } from '@/apis/Base'
 import { type ResponseData } from '@/models/ResponseData'
 import '@/pages/Login/Login.scss'
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { type Want } from '@/models/Want'
 
 import '@/components/Wants/WantList.scss'
-import { get } from '@/apis/base'
+import { get } from '@/apis/Base'
 import { type ResponseData } from '@/models/ResponseData'
 
 const WantList: React.FunctionComponent = () => {
