@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { type Want } from '@/models/Want'
-
+import { useNavigate } from 'react-router-dom'
 import '@/components/Wants/WantList.scss'
 import { get } from '@/apis/Base'
 import { type ResponseData } from '@/models/ResponseData'
@@ -8,8 +8,11 @@ import { type ResponseData } from '@/models/ResponseData'
 const WantList: React.FunctionComponent = () => {
   const [wants, setWants] = useState<Want[]>([])
 
+  const navigate = useNavigate()
+
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
+      // TODO: ユーザIDを管理する処理を実装する必要がある
       const responseData: ResponseData = await get('/v1/users/1/wants', {})
 
       setWants(responseData.data.wants)
@@ -18,8 +21,8 @@ const WantList: React.FunctionComponent = () => {
     void fetchData()
   }, [])
 
-  const click = (): void => {
-    // TODO: ここで欲しいものの詳細画面に遷移する
+  const click = (id: number): void => {
+    navigate(`/want/${id}`)
   }
 
   return (
@@ -34,7 +37,7 @@ const WantList: React.FunctionComponent = () => {
         </div>
         {wants.map((want: Want, index: number) => (
           <React.Fragment key={index}>
-            <div className="row" onClick={click}>
+            <div className="row" onClick={() => { click(want.id) }}>
               <div>{want.category}</div>
               <div>{want.goods}</div>
               <div>{want.name}</div>

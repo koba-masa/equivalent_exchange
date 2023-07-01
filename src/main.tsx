@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from '@/pages/Login/Login'
 import worker from '@/mocks/browser.ts'
 import Dashboard from '@/pages/Dashboard'
+import WantDetail from '@/pages/WantDetail'
 
 if (process.env.NODE_ENV === 'development') {
   void worker.start()
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/want/:wantId" element={<WantDetail />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
