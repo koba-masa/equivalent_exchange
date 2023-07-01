@@ -1,7 +1,8 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { login, logined } from '@/components/Authentication'
+import { post } from '@/apis/base'
+import { type ResponseData } from '@/models/ResponseData'
 import '@/pages/Login/Login.scss'
 
 const Login: React.FunctionComponent = () => {
@@ -18,23 +19,16 @@ const Login: React.FunctionComponent = () => {
   }, [])
 
   const handleLogin = async (): Promise<void> => {
-    const data = {
+    const params = {
       login_id: loginId,
       password
     }
-    const headers = {
-      'Content-Type': 'application/json'
-    }
-
-    try {
-      await axios.post('http://localhost:5173/v1/login', data, {
-        headers
-      })
-
+    const responseData: ResponseData = await post('/v1/login', params)
+    if (responseData.status === 200) {
       // TODO: 本来はサーバーからトークンを取得する
       login('sample')
       navigate('/')
-    } catch (error) {
+    } else {
       setErrorMessage('ログインIDまたはパスワードが間違っています')
     }
   }
