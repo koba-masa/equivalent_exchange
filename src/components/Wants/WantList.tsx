@@ -1,16 +1,18 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { type Want } from '@/models/Want'
 
 import '@/components/Wants/WantList.scss'
+import { get } from '@/apis/base'
+import { type ResponseData } from '@/models/ResponseData'
 
 const WantList: React.FunctionComponent = () => {
   const [wants, setWants] = useState<Want[]>([])
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
-      const data = await getWants()
-      setWants(data.wants)
+      const responseData: ResponseData = await get('/v1/users/1/wants', {})
+
+      setWants(responseData.data.wants)
     }
 
     void fetchData()
@@ -18,17 +20,6 @@ const WantList: React.FunctionComponent = () => {
 
   const click = (): void => {
     // TODO: ここで欲しいものの詳細画面に遷移する
-  }
-
-  const getWants = async (): Promise<any> => {
-    try {
-      const response = await axios.get('http://localhost:5173/v1/users/1/wants')
-
-      return response.data
-    } catch (error) {
-      console.log(error)
-      return []
-    }
   }
 
   return (
