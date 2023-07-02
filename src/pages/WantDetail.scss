@@ -1,0 +1,38 @@
+.detail {
+  .want {
+    .row {
+      width: 60%;
+      margin: 10px 0px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid #ccc;
+
+      .label {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .stocks {
+    width: 99%;
+    display: grid;
+    margin: 40px auto;
+
+    .header, .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      padding: 10px;
+    }
+
+    .row {
+      margin: 1px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      grid-gap: 10px;
+    }
+
+    .row:hover {
+      background-color: #fbf8e2;
+    }
+  }
+}
