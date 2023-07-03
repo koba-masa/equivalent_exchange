@@ -1,4 +1,4 @@
-import { get } from '@/apis/Base'
+import { get, post } from '@/apis/Base'
 import { logined } from '@/components/Authentication'
 import { type ResponseData } from '@/models/ResponseData'
 import React, { useEffect, useState } from 'react'
@@ -13,6 +13,12 @@ const WantDetail: React.FunctionComponent = () => {
   const { wantId } = useParams<{ wantId: string }>()
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   const [detail, setDetail] = useState<Detail>({} as Detail)
+  const [message, setMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
+
+  // TODO: ユーザIDを管理する処理を実装する必要がある
+  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+  const path: string = `/v1/users/1/wants/${wantId}`
 
   const navigate = useNavigate()
 
@@ -21,25 +27,44 @@ const WantDetail: React.FunctionComponent = () => {
       navigate('/login')
     }
 
-    const fetchData = async (): Promise<void> => {
-      // TODO: ユーザIDを管理する処理を実装する必要がある
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      const path: string = `/v1/users/1/wants/${wantId}`
-      const responseData: ResponseData = await get(path, {})
-
-      if (responseData.status === 403 || responseData.status === 404) {
-        // TODO: 何かする
-      }
-      setDetail(responseData.data.detail as Detail)
-    }
-
     void fetchData()
   }, [])
+
+  const fetchData = async (): Promise<void> => {
+    const responseData: ResponseData = await get(path, {})
+
+    if (responseData.status === 403 || responseData.status === 404) {
+      // TODO: 何かする
+    }
+    setDetail(responseData.data.detail as Detail)
+  }
+
+  const apply = async (stockId: number): Promise<void> => {
+    if (!window.confirm('交換の申し込みをしますか？')) {
+      return
+    }
+
+    setMessage('')
+    setErrorMessage('')
+
+    const params = {
+      stockId
+    }
+    const responseData: ResponseData = await post(path, params)
+    if (responseData.status === 404) {
+      setErrorMessage('交換候補の情報が変更されたため、申請できませんでした。')
+    } else {
+      setMessage('交換の申請が完了しました。')
+    }
+    void fetchData()
+  }
 
   return (
     <div>
       <h1>欲しいもの</h1>
       <div className="detail">
+        <div className="message">{message}</div>
+        <div className="error_message">{errorMessage}</div>
         <div className="want">
           <div className="row">
             <div className="label">カテゴリ</div>
@@ -70,7 +95,12 @@ const WantDetail: React.FunctionComponent = () => {
           {detail.options &&
             detail?.options.map((option: WantDetailOption, index: number) => (
               <React.Fragment key={index}>
-                <div className="row">
+                <div
+                  className="row"
+                  onClick={() => {
+                    void apply(option.stockId)
+                  }}
+                >
                   <div>{option.category}</div>
                   <div>{option.goods}</div>
                   <div>{option.character}</div>
