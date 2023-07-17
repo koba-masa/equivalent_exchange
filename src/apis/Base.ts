@@ -1,7 +1,7 @@
 import { type ResponseData } from '@/models/ResponseData'
 import axios from 'axios'
 
-const API_URL = 'http://localhost:5173'
+const API_URL = import.meta.env.VITE_API_DOMAIN
 
 export const get = async (
   path: string,
