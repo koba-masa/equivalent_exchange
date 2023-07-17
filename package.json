@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:local": "vite --mode local_development",
     "build": "tsc && vite build",
     "prettier": "prettier src/*.{ts,tsx} && prettier src/**/*.{ts,tsx}",
     "prettier:fix": "prettier -w src/*.{ts,tsx} && prettier -w src/**/*.{ts,tsx}",

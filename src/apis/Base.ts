@@ -1,7 +1,7 @@
 import { type ResponseData } from '@/models/ResponseData'
 import axios from 'axios'
 
-const API_URL = 'http://localhost:5173'
+const API_URL = import.meta.env.VITE_API_DOMAIN
 
 export const get = async (
   path: string,
@@ -9,6 +9,7 @@ export const get = async (
 ): Promise<ResponseData> => {
   let responseData: ResponseData
   try {
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     const response = await axios.get(`${API_URL}${path}`, params)
 
     responseData = {
@@ -35,6 +36,7 @@ export const post = async (
     'Content-Type': 'application/json'
   }
   try {
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     const response = await axios.post(`${API_URL}${path}`, params, { headers })
 
     responseData = {
