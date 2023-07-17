@@ -9,6 +9,7 @@ export const get = async (
 ): Promise<ResponseData> => {
   let responseData: ResponseData
   try {
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     const response = await axios.get(`${API_URL}${path}`, params)
 
     responseData = {
@@ -35,6 +36,7 @@ export const post = async (
     'Content-Type': 'application/json'
   }
   try {
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     const response = await axios.post(`${API_URL}${path}`, params, { headers })
 
     responseData = {
