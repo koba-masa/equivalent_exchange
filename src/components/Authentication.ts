@@ -8,3 +8,11 @@ export const logined = (): boolean => {
 export const login = (token: string): void => {
   localStorage.setItem(AUTHENTICATION_KEY, token)
 }
+
+export const token = (): string => {
+  const token = localStorage.getItem(AUTHENTICATION_KEY)
+  if (token === null) {
+    return ''
+  }
+  return token
+}
