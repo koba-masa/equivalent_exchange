@@ -13,7 +13,7 @@ const WantList: React.FunctionComponent = () => {
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       // TODO: ユーザIDを管理する処理を実装する必要がある
-      const responseData: ResponseData = await get('/v1/users/1/wants', {})
+      const responseData: ResponseData = await get('/v1/wants', {})
 
       setWants(responseData.data.wants)
     }

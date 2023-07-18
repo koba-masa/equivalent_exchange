@@ -16,9 +16,8 @@ const WantDetail: React.FunctionComponent = () => {
   const [message, setMessage] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
-  // TODO: ユーザIDを管理する処理を実装する必要がある
   // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-  const path: string = `/v1/users/1/wants/${wantId}`
+  const path: string = `/v1/wants/${wantId}`
 
   const navigate = useNavigate()
 
