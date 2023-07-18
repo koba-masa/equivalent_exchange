@@ -6,7 +6,7 @@ import worker from '@/mocks/browser.ts'
 import Dashboard from '@/pages/Dashboard'
 import WantDetail from '@/pages/WantDetail'
 
-if (process.env.NODE_ENV === 'development') {
+if (import.meta.env.MODE === 'development') {
   void worker.start()
 }
 
