@@ -13,7 +13,7 @@ const WantList: React.FunctionComponent = () => {
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       // TODO: ユーザIDを管理する処理を実装する必要がある
-      const responseData: ResponseData = await get('/v1/users/1/wants', {})
+      const responseData: ResponseData = await get('/v1/wants', {})
 
       setWants(responseData.data.wants)
     }
@@ -38,9 +38,9 @@ const WantList: React.FunctionComponent = () => {
         {wants.map((want: Want, index: number) => (
           <React.Fragment key={index}>
             <div className="row" onClick={() => { click(want.id) }}>
-              <div>{want.category}</div>
-              <div>{want.goods}</div>
-              <div>{want.name}</div>
+              <div>{want.category_name}</div>
+              <div>{want.good_name}</div>
+              <div>{want.character_name}</div>
               <div>{want.status}</div>
             </div>
           </React.Fragment>

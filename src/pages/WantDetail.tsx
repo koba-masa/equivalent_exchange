@@ -16,9 +16,8 @@ const WantDetail: React.FunctionComponent = () => {
   const [message, setMessage] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
-  // TODO: ユーザIDを管理する処理を実装する必要がある
   // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-  const path: string = `/v1/users/1/wants/${wantId}`
+  const path: string = `/v1/wants/${wantId}`
 
   const navigate = useNavigate()
 
@@ -36,7 +35,7 @@ const WantDetail: React.FunctionComponent = () => {
     if (responseData.status === 403 || responseData.status === 404) {
       // TODO: 何かする
     }
-    setDetail(responseData.data.detail as Detail)
+    setDetail(responseData.data as Detail)
   }
 
   const apply = async (stockId: number): Promise<void> => {
@@ -68,15 +67,15 @@ const WantDetail: React.FunctionComponent = () => {
         <div className="want">
           <div className="row">
             <div className="label">カテゴリ</div>
-            <div className="value">{detail.category}</div>
+            <div className="value">{detail.category_name}</div>
           </div>
           <div className="row">
             <div className="label">商品</div>
-            <div className="value">{detail.goods}</div>
+            <div className="value">{detail.good_name}</div>
           </div>
           <div className="row">
             <div className="label">キャラクター</div>
-            <div className="value">{detail.character}</div>
+            <div className="value">{detail.character_name}</div>
           </div>
           <div className="row">
             <div className="label">ステータス</div>
@@ -98,12 +97,12 @@ const WantDetail: React.FunctionComponent = () => {
                 <div
                   className="row"
                   onClick={() => {
-                    void apply(option.stockId)
+                    void apply(option.stock_id)
                   }}
                 >
-                  <div>{option.category}</div>
-                  <div>{option.goods}</div>
-                  <div>{option.character}</div>
+                  <div>{option.category_name}</div>
+                  <div>{option.good_name}</div>
+                  <div>{option.character_name}</div>
                   <div>{option.remark}</div>
                 </div>
               </React.Fragment>
