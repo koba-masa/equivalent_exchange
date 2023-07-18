@@ -1,7 +1,7 @@
 export interface Want {
   id: number
-  category: string
-  goods: string
-  name: string
+  category_name: string
+  good_name: string
+  character_name: string
   status: string
 }
