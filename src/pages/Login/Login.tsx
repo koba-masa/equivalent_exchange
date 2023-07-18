@@ -25,8 +25,7 @@ const Login: React.FunctionComponent = () => {
     }
     const responseData: ResponseData = await post('/v1/login', params)
     if (responseData.status === 200) {
-      // TODO: 本来はサーバーからトークンを取得する
-      login('sample')
+      login(responseData.data.token)
       navigate('/')
     } else {
       setErrorMessage('ログインIDまたはパスワードが間違っています')
